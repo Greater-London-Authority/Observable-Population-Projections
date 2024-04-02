@@ -1,0 +1,127 @@
+@import url("observablehq:default.css");
+@import url("observablehq:theme-air.css");
+
+/*
+https://observablehq.com/framework/config#style
+*/
+
+:root {
+  /*
+  
+    --theme-foreground - page foreground color, e.g. black
+    --theme-background - page background color, e.g. white
+    --theme-background-alt - block background color, e.g. light gray
+    --theme-foreground-alt - heading foreground color, e.g. brown
+    --theme-foreground-muted - secondary text foreground color, e.g. dark gray
+    --theme-foreground-faint - faint border color, e.g. middle gray
+    --theme-foreground-fainter - fainter border color, e.g. light gray
+    --theme-foreground-faintest - faintest border color, e.g. almost white
+    --theme-foreground-focus - emphasis foreground color, e.g. blue
+
+  */
+}
+
+.ciu-footer {
+    padding-left: 0;
+    padding-right: 32px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    background-color: #121516;
+    color: white;
+    display: flex;
+    flex-direction: row-reverse;
+
+    position: absolute;
+    left: 0;
+    width: 100%;
+   }
+
+
+/* over-ride colors of sidebar in layout.css */
+#observablehq-sidebar {
+  background: #1B2021;
+  color: white;
+
+  border-right: 0 !important; /*default 1px creates a white gap between sidebar and footer */
+}
+
+#observablehq-sidebar > ol:first-child {
+  background: #1B2021;
+  color: white;
+}
+
+#observablehq-sidebar summary::after {
+  background: #1B2021;
+}
+
+#observablehq-sidebar summary:hover,
+.observablehq-link-active a,
+.observablehq-link a:hover {
+  background: #353D42;
+}
+
+/* change link appearance in sidebar */
+#observablehq-sidebar summary:hover,
+.observablehq-link-active a,
+.observablehq-link a:hover {
+  color: white;
+  background: rgb(37 102 162);
+  text-decoration: none;
+}
+
+
+/* make some things square */
+#observablehq-footer nav a {
+  border-radius: 0;
+}
+.observablehq-pre-copy {
+  border-radius: 0;
+}
+
+#observablehq-search input {
+  border-radius: 0px;
+}
+
+#observablehq-search-results li:after,
+#observablehq-search-results a:after {
+  border-radius: 0;
+}
+
+/* make square - override card.css */
+.card {
+  border-radius: 0;
+}
+
+
+/* make nav buttons look like PlacardButton component - over-rides layout.css*/
+#observablehq-footer nav a {
+  border: 1px solid var(--theme-foreground-fainter);
+
+  color: white;
+  background-color: rgb(53, 61, 66);
+  border-radius: 0;
+}
+
+#observablehq-footer nav a:hover {
+  border: 1px solid var(--theme-foreground-fainter);
+
+  color: white;
+  background-color: #3787D2; /*core-blue-600 */
+  border-radius: 0;
+}
+
+#observablehq-footer nav a:hover span {
+  text-decoration: none;
+}
+
+#observablehq-footer nav a[rel="prev"]::before {
+  color: #AEB1B4;
+}
+
+#observablehq-footer nav a[rel="next"]::before {
+  color: #AEB1B4;
+}
+
+
+
+/*  #AEB1B4; */

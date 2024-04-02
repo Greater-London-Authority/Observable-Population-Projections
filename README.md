@@ -1,6 +1,7 @@
-# Observable Framework Style
+# Observable Framework Template using CIU style
 
 This repo is an experiment to tweak the styling of an [Observable Framework](https://observablehq.com/framework) project to match the CIU house style.
+It is currently a work in progress.
 
 To start the local preview server, run:
 

@@ -4,9 +4,6 @@
 This project is a dashboard that visualises population projection data using observable markdown framework. The dashboard is a work in progress with new features under development.
 The repo is based on the observable template found [Observable Framework](https://observablehq.com/framework) and [here]([url](https://github.com/Greater-London-Authority/observable-framework-template/tree/main)), with the CIU styling 
 
-
-```
-
 ## Getting Started
 Prerequisites
 1. Node.js installed on your machine.

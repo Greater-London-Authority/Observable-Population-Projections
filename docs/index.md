@@ -1,4 +1,3 @@
----
 toc: false
 
 style: ./theme.css
@@ -6,7 +5,6 @@ footer:
 ---
 
 <style>
-
 .hero {
   display: flex;
   flex-direction: column;
@@ -44,11 +42,11 @@ footer:
     font-size: 90px;
   }
 }
-
 </style>
 
 <div class="hero">
-  <h1>Hello, Observable Framework</h1>
+  <h1>Welcome, GLA population projection homepage </h1>
+  <br>
   <h2>Welcome to your new project! Edit&nbsp;<code style="font-size: 90%;">docs/index.md</code> to change this page.</h2>
   <a href="https://observablehq.com/framework/getting-started">Get started<span style="display: inline-block; margin-left: 0.25rem;">↗︎</span></a>
 </div>
@@ -80,7 +78,30 @@ footer:
       ]
     }))
   }</div>
+  <div class="card" id="plotly-chart" style="width:100%;height:100%;"></div>
 </div>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+  const trace1 = {
+    x: [1, 2, 3, 4, 5],
+    y: [1, 9, 4, 7, 5],
+    type: 'scatter'
+  };
+
+  const layout = {
+    title: 'Basic Plotly Chart',
+    xaxis: {
+      title: 'X Axis'
+    },
+    yaxis: {
+      title: 'Y Axis'
+    }
+  };
+
+  Plotly.newPlot('plotly-chart', [trace1], layout);
+</script>
+
 
 ```js
 const aapl = FileAttachment("aapl.csv").csv({typed: true});

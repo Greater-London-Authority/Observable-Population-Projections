@@ -44,3 +44,4 @@ title: Visualisation Dashboard
 <script src="static/js/main.js" defer></script>
 <script src="static/js/d3_plots.js" defer></script>
 <script src="static/js/plotly_plots.js" defer></script>
+<script src="static/js/app.js" defer></script>

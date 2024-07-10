@@ -1,7 +1,8 @@
-<!-- theme: dashboard -->
+---
+theme: dashboard
 title: Visualisation Dashboard
 <!-- toc: false -->
-<!-- style: ./theme.css -->
+style: ./theme.css
 ---
 
 # Visualisation Dashboard
@@ -20,17 +21,6 @@ title: Visualisation Dashboard
 <div class="main-content">
   <h1>Plotly Projection Graph</h1>
   
-  <!-- Control elements -->
-  <div class="controls">
-    <label for="projectionSelect">Select Projection:</label>
-    <select id="projectionSelect">
-      <option value="5yr">5yr</option>
-      <option value="10yr">10yr</option>
-      <option value="15yr">15yr</option>
-      <option value="all">All</option>
-    </select>
-    <button id="exportCsvBtn">Export CSV</button>
-  </div>
 
   <!-- Plotly Multi-Line Graph -->
   <div id="multiLineGraph"></div>
@@ -39,8 +29,34 @@ title: Visualisation Dashboard
   <div id="table-container"></div>
 </div>
 
-<script src="https://d3js.org/d3.v6.min.js"></script>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script src="static/js/main.js" defer></script>
-<script src="static/js/d3_plots.js" defer></script>
-<script src="static/js/plotly_plots.js" defer></script>
+
+```js
+const projectionOptions = ["5yr", "10yr", "15yr", "all"]
+const selectedProjection = view(Inputs.select(projectionOptions, {value: "all", label: "Select Projection"}));
+```
+
+```js
+// Load the data
+
+const data = await FileAttachment("data/merged_population_long_data.csv").csv({typed: true});
+
+// filtered data will reactively update when selectedProjection changes
+let filteredData;
+if (selectedProjection === "all"){
+  filteredData = data;
+} else {
+  filteredData = data.filter(d => d.projection === selectedProjection)
+}
+```
+
+```js
+// render as a table, using built-in observable component
+Inputs.table(filteredData)
+```
+
+
+```js
+import Plotly from "npm:plotly.js-dist-min";
+import {plotMultiLineGraphPlotly} from "./static/js/plotly_plots.js"
+plotMultiLineGraphPlotly(filteredData, Plotly)
+```

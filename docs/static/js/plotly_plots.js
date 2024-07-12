@@ -1,4 +1,4 @@
-function plotMultiLineGraphPlotly(data) {
+export function plotMultiLineGraphPlotly(data, Plotly) {
     // Get unique years
     const years = Array.from(new Set(data.map(d => d.year)));
 

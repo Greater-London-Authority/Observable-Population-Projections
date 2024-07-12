@@ -1,7 +1,8 @@
-<!-- theme: dashboard -->
+---
+theme: dashboard
 title: Visualisation Dashboard
 <!-- toc: false -->
-<!-- style: ./theme.css -->
+style: ./theme.css
 ---
 
 # Visualisation Dashboard
@@ -20,28 +21,73 @@ title: Visualisation Dashboard
 <div class="main-content">
   <h1>Plotly Projection Graph</h1>
   
-  <!-- Control elements -->
-  <div class="controls">
-    <label for="projectionSelect">Select Projection:</label>
-    <select id="projectionSelect">
-      <option value="5yr">5yr</option>
-      <option value="10yr">10yr</option>
-      <option value="15yr">15yr</option>
-      <option value="all">All</option>
-    </select>
-    <button id="exportCsvBtn">Export CSV</button>
-  </div>
-
   <!-- Plotly Multi-Line Graph -->
   <div id="multiLineGraph"></div>
   
   <!-- Table container -->
   <div id="table-container"></div>
+
+   <!-- Download Button -->
+  <button id="download-btn">Download CSV</button>
 </div>
 
-<script src="https://d3js.org/d3.v6.min.js"></script>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script src="static/js/main.js" defer></script>
-<script src="static/js/d3_plots.js" defer></script>
-<script src="static/js/plotly_plots.js" defer></script>
-<script src="static/js/app.js" defer></script>
+```js
+const projectionOptions = ["5yr", "10yr", "15yr", "all"]
+const selectedProjection = view(Inputs.select(projectionOptions, {value: "all", label: "Select Projection"}));
+```
+
+```js
+// Load the data
+
+const data = await FileAttachment("data/merged_population_long_data.csv").csv({typed: true});
+
+// filtered data will reactively update when selectedProjection changes
+let filteredData;
+if (selectedProjection === "all"){
+  filteredData = data;
+} else {
+  filteredData = data.filter(d => d.projection === selectedProjection)
+}
+```
+
+```js
+// render as a table, using built-in observable component
+Inputs.table(filteredData)
+```
+// ? I have tried to do the button in the observable format but it keeps breaking and there is very limited online pages to trouble shoot compare to using vanilla javascript
+<!-- ```js
+// render as a table, using built-in observable component
+Inputs.button(filteredData, 'download.csv')
+``` -->
+
+
+```js
+import Plotly from "npm:plotly.js-dist-min";
+import {plotMultiLineGraphPlotly} from "./static/js/plotly_plots.js"
+plotMultiLineGraphPlotly(filteredData, Plotly)
+```
+
+// features for csv dowload button
+```js
+// Define function to export data as CSV
+function exportToCsv(data, filename) {
+  const csvContent = [
+    Object.keys(data[0]).join(','), // header row
+    ...data.map(row => Object.values(row).join(',')) // data rows
+  ].join('\n');
+
+  const blob = new Blob([csvContent], { type: 'text/csv' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+```
+```js
+// Add event listener to the download button
+document.getElementById('download-btn').addEventListener('click', () => {
+  exportToCsv(filteredData, 'filtered_data.csv');
+});
+```

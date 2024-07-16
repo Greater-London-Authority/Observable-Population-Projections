@@ -1,9 +1,29 @@
 ---
-title: Example report
+title: Report
 style: ./theme.css
 ---
 
-# A brief history of space exploration
+# Introduction
+
+The 2022 mid-year estimate (MYE) is the current official estimate of the population for local authorities in England and Wales. Estimates are produced annually by the Office for National Statistics (ONS) and the 2022 MYE was published on 23 November 2023.
+
+ ## Comparison to previous MYE data
+The previous MYE series (for the period 2012-2020) starts with the 2011 census estimate. Each subsequent year’s population is calculated by adding estimates of births, deaths and migration to the previous year’s population. The 2021 MYE represents a break in this series as it uses the 2021 census as its base.
+
+The ONS revised the 2012-2020 MYE series in late 2023 to bring it in line with the 2021 MYE, so that comparisons could be made between between this series and the previous series. The values plotted on the chart are the revised values.
+
+## Key Points
+- London’s mid-2022 population was 8.866 million
+- London’s population fell by 61,400 persons compared to the previous mid-year value
+- Components of change were as follows:
+-109,500 births and 52,000 deaths (natural change of 57,500)
+- Net domestic migration was an outflow of 125,800
+- Net international migration was an inflow of 130,200
+
+## Population Change
+London’s 2022 population was 8,866,180. The first chart below shows the 2022 MYE in the context of previous estimates. There is an uptick after a temporary decrease in population which we attribute to the COVID-19 pandemic.
+
+## filler example
 
 This report is a brief overview of the history and current state of rocket launches and space exploration.
 

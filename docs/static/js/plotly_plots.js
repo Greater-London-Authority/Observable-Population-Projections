@@ -62,3 +62,48 @@ export function plotMultiLineGraphPlotly(data, Plotly) {
     // Plot the graph using Plotly
     Plotly.newPlot('multiLineGraph', traces, layout);
 }
+
+export function plotlymap(data, Plotly) {
+    // List of columns that can be displayed
+    const columns = ['2005', '2010', '2015', 'Change 2005 to 2010', 'Change 2010 to 2015'];
+
+    // Initial column to display
+    const initialColumn = '2015';
+
+    // Function to get data for Plotly
+    function getData(column) {
+        return {
+            type: 'choroplethmapbox',
+            geojson: gdf.geometry,
+            locations: gdf.index,
+            z: gdf[column],
+            colorscale: 'Viridis',
+            marker: { opacity: 0.5 }
+        };
+    }
+
+    // Create initial plot
+    const data = [getData(initialColumn)];
+
+    // Create layout
+    const layout = {
+        mapbox: {
+            style: 'carto-positron',
+            center: { lat: 51.5074, lon: -0.1278 },
+            zoom: 9
+        },
+        title: `London Borough Births Data (${initialColumn})`,
+        updatemenus: [{
+            buttons: columns.map(col => ({
+                args: [{'z': [gdf[col]]}, {'title': `London Borough Births Data (${col})`}],
+                label: col,
+                method: 'restyle'
+            })),
+            direction: 'down',
+            showactive: true
+        }]
+    };
+
+    // Set up the Plotly map
+    Plotly.newPlot('map', data, layout);
+}

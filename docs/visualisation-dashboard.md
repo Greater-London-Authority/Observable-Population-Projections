@@ -21,11 +21,10 @@ style: ./theme.css
 <div class="main-content">
   <h1>Plotly Projection Graph</h1>
   
-  <!-- Plotly Multi-Line Graph -->
-  <div id="multiLineGraph"></div>
-  
   <!-- Table container -->
   <div id="table-container"></div>
+
+  <div id="multiLineGraph"></div>
 
    <!-- Download Button -->
   <button id="download-btn">Download CSV</button>
@@ -54,7 +53,7 @@ if (selectedProjection === "all"){
 // render as a table, using built-in observable component
 Inputs.table(filteredData)
 ```
-// ? I have tried to do the button in the observable format but it keeps breaking and there is very limited online pages to trouble shoot compare to using vanilla javascript
+<!-- ? I have tried to do the button in the observable format but it keeps breaking and there is very limited online pages to trouble shoot compare to using vanilla javascript -->
 <!-- ```js
 // render as a table, using built-in observable component
 Inputs.button(filteredData, 'download.csv')
@@ -66,8 +65,8 @@ import Plotly from "npm:plotly.js-dist-min";
 import {plotMultiLineGraphPlotly} from "./static/js/plotly_plots.js"
 plotMultiLineGraphPlotly(filteredData, Plotly)
 ```
-
-// features for csv dowload button
+<!-- 
+// features for csv dowload button -->
 ```js
 // Define function to export data as CSV
 function exportToCsv(data, filename) {

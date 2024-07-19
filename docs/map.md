@@ -13,7 +13,7 @@ import {plotlymap} from "./static/js/plotly_plots.js"
 
 // Load the data asynchronously and then plot the map
 async function loadDataAndPlotMap() {
-  const data = await FileAttachment("data/london_boroughs.geojson").json({typed: true});
+  const data = await FileAttachment("data/birth_map_data.geojson").json({typed: true});
   console.log(data); // Moved inside the function to access `data`
   plotlymap(data, Plotly);
 }

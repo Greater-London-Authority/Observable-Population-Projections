@@ -113,11 +113,15 @@ export function plotlymap(data, Plotly) {
     const initialColumn = '2015';
 
     function getPlotlydata(column) {
+
         return [{
             type: 'choroplethmapbox',
-            geojson: data.geometry,
-            locations: data.index,
-            z: data[column],
+            geojson: data, // data is geojson of geometer
+            featureidkey: "properties.name", // specifies which field of the each GeoJSON feature should be interpreted as the id
+
+            locations: data.features.map(d => d.properties.name), // an array of ids, indicating which GeoJSON features should be coloured
+            z: data.features.map(d => d.properties[column]), // array of data values, determining the colors of each feature
+
             colorscale: 'Viridis',
             marker: { opacity: 0.5 }
         }];
